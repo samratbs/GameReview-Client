@@ -1,0 +1,93 @@
+﻿<div class="p-4">
+    <div class="container">
+        <p>Ragnarok is a Player vs Player Action Game which is planned to release on multiple platforms.
+        Consisting of multiple maps, different playstyles and customizable characters and skill, this game is trying to bring a whole competitive nature of
+        new competitive nature as compared to traditional action PvP games. This is a review of the Beta version provided to selected users.
+        </p>
+    </div>
+    <div class="container" *ngIf="isFeedback">
+        <div class="card-group">
+            <div class="card border-primary mb-3 text-center">
+                <div class="card-header">Average Ragnarok Rating</div>
+                <div class="card-body">
+                    <h1 class="card-title">{{rate}}</h1>
+                    <p class="card-text">Current average rating provided by all of you.</p>
+                </div>
+            </div>
+        </div>
+        <h1>Hi {{user.firstName}}!</h1>
+        <div class="card text-black bg-light mb-3">
+            <h4 class="card-header">Send your Feedback</h4>
+            <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group" >
+                    <label>Your Comment</label>
+                    <textarea class="form-control" rows="5" formControlName="comment"></textarea>
+                </div>
+                <div class="form-group" >
+                    <label for="type">Feedback Type</label>
+                    <select formControlName="feedback" class="form-control" required>
+                        <option value = "Positive">Positive</option>
+                        <option value = "Semi Positive">Semi Positive</option>
+                        <option value = "Negative">Negative</option>
+                    </select>
+                    <div class="invalid-feedback">Please choose a feedback type</div>
+                </div>
+                <div class="form-group"><label>Rating</label></div>
+                <div class="form-group">
+                    <div class="form-check form-check-inline" *ngFor="let rating of ratings">
+                        <input class="form-check-input" type="radio" formControlName="rate" value={{rating}}>
+                        <label class="form-check-label" for="inlineRatings">{{rating}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary my-1">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="!isFeedback">
+        <h1>Thank your for your feedback.</h1>
+
+        <div class="card-group">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Your Feedback</h5>
+                    <p class="card-text">{{feedbacks.comment}}</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Your Feedback Type</h5>
+                    <p class="card-text">{{feedbacks.type}}</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;" >
+                <div class="card-body">
+                    <h5 class="card-title">Your Rating</h5>
+                    <p class="card-text">{{feedbacks.ratings}}</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;" >
+                <div class="card-body">
+                    <h5 class="card-title">Average Rating</h5>
+                    <p class="card-text">{{rate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4 class="text-center pt-3 pb-2" >Top 10 Popular Games of 2019-2020</h4>
+        <div class="card-group style=width: 18rem;">
+            <div *ngFor = "let result of games.results; let i = index;">
+                <div class="card" style="width: 18rem;" *ngIf="i<10" >
+                    <img class="card-img-top" src="{{result.background_image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i+1}}. {{result.name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

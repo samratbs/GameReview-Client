@@ -1,0 +1,84 @@
+<div class="p-4">
+    <div class="container">
+        <h1>Feedback analysis</h1>
+        <div class="card-group">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header"><h5>Total Users</h5></div>
+                <div class="card-body">
+                    <h5 class="card-title">{{demographic.totalUsers}}</h5>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-header"><h5>Total Feedbacks Received</h5></div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ratings.totalFeedbacks}}</h5>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-header"><h5>Average Rating</h5></div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ratings.rate}}</h5>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div> 
+        <div class="card-group">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Average Feedback Type</h5>
+                    <p class="card-text"> Positive Feedbacks: {{ratings.positivePercentage}}%</p>
+                    <p class="card-text"> Negative Feedbacks: {{ratings.negativePercentage}}%</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;" >
+                <div class="card-body">
+                    <h5 class="card-title">Feedback Demographic</h5>
+                    <p class="card-text"> Males: {{demographic.malePercentage}}%</p>
+                    <p class="card-text"> Females: {{demographic.femalePercentage}}%</p>
+                    <p class="card-text"> Others: {{demographic.otherPercentage}}%</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;" >
+                <div class="card-body">
+                    <h5 class="card-title">Platform Preferences</h5>
+                    <p class="card-text"> PlayStation: {{platform.ps4Percentage}}%</p>
+                    <p class="card-text"> XBOX: {{platform.xboxPercentage}}%</p>
+                    <p class="card-text"> Switch: {{platform.switchPercentage}}%</p>
+                    <p class="card-text"> PC: {{platform.pcPercentage}}%</p>
+                    <p class="card-text"> Mobile: {{platform.mobilePercentage}}%</p>
+                </div>
+            </div> 
+        </div>
+        <h4 class="pt-5">Feedbacks</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th style="width: 30%">Username</th>
+                <th style="width: 30%">Comment</th>
+                <th style="width: 30%">Feedback Type</th>
+                <th style="width: 30%">Ratings</th>
+                <th style="width: 10%"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let feedback of feedbacks">
+                    <div *ngFor="let user of users">
+                        <td *ngIf="user.id == feedback.userRef">{{user.username}}</td>
+                    </div>
+                    <td >{{feedback.comment}}</td>
+                    <td >{{feedback.type}}</td>
+                    <td >{{feedback.ratings}}</td>
+                    <td style="white-space: nowrap">
+                    </td>
+                </tr>
+                <tr *ngIf="!users">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

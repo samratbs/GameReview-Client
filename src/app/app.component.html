@@ -1,0 +1,28 @@
+﻿<!-- navigation -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <img src="https://cdn.discordapp.com/attachments/762577528552423424/775643440587079680/Untitled.png" width="30" height="30" alt="">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active" *ngIf="user.username == 'admin'">Users</a>
+        <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active" *ngIf="user.username == 'admin'">Admin</a>
+    </div>
+    <div class="navbar-nav collapse navbar-collapse justify-content-end" id="navbarCollapse">
+        <img src="https://cdn.discordapp.com/attachments/762577528552423424/775646968516837387/icon.png"
+         width="30" height="35" class="d-inline-block align-bottom" alt="" (click)="logout()" >
+        <a class="nav-item nav-link " (click)="logout()">Logout</a>
+    </div>
+    
+</nav>
+
+<!-- app container -->
+<div class="app-container">
+    <alert></alert>
+    <router-outlet></router-outlet>
+</div>
+
+<!-- footer -->
+<div class="text-center mt-4">
+    <p>
+        <a>Ragnarok 2020 - Game Review</a>
+    </p>
+</div>
